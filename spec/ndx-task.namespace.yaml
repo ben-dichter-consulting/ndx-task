@@ -1,0 +1,11 @@
+namespaces:
+- author: Ben Dichter
+  contact: ben.dichter@gmail.com
+  doc: An NWB:N extension
+  name: ndx-task
+  schema:
+  - namespace: core
+    neurodata_types:
+    - ElectricalSeries
+  - source: ndx-task.extensions.yaml
+  version: 0.1.0
