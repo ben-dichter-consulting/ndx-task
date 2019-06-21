@@ -10,6 +10,23 @@ pip install git+https://github.com/bendichter/ndx-task.git
 
 ### Usage
 
+```
+Task parameters:
+    name (:py:class:`~str`): the name of this container
+    description (:py:class:`~str`): describe the task
+    category (:py:class:`~str`): free category field
+    auditory (:py:class:`~bool`): experiment involves auditory stimuli
+    visual (:py:class:`~bool`): experiment involves visual stimuli
+    decision (:py:class:`~bool`): experiment involves decision making
+    navigation (:py:class:`~bool`): experiment involves a navigation task
+    rest (:py:class:`~bool`): experiment involves no task or stimuli
+    motor (:py:class:`~bool`): experiment involves a fine motor task
+    olfactory (:py:class:`~bool`): experiment involves olfactory stimuli
+    speech production (:py:class:`~bool`): experiment involves speaking
+    speech perception (:py:class:`~bool`): experiment involves listening to speech
+```
+
+
 ```python
 from ndx_task import Task, Tasks
 
