@@ -1,9 +1,64 @@
 groups:
-- neurodata_type_def: TetrodeSeries
-  neurodata_type_inc: ElectricalSeries
-  doc: An extension of ElectricalSeries to include information about the tetrode ID
-    for each time series.
+- neurodata_type_def: Task
+  neurodata_type_inc: NWBDataInterface
+  doc: task information
   attributes:
-  - name: trode_id
-    dtype: int
-    doc: The tetrode ID
+  - name: description
+    dtype: text
+    doc: describe the task
+  - name: category
+    dtype: text
+    doc: free category field
+    required: false
+  - name: help
+    dtype: text
+    value: stores data about a specific task
+    doc: help
+  - name: auditory
+    dtype: bool
+    doc: experiment involves auditory stimuli
+    required: false
+  - name: visual
+    dtype: bool
+    doc: experiment involves visual stimuli
+    required: false
+  - name: decision
+    dtype: bool
+    doc: experiment involves decision making
+    required: false
+  - name: navigation
+    dtype: bool
+    doc: experiment involves a navigation task
+    required: false
+  - name: rest
+    dtype: bool
+    doc: experiment involves no task or stimuli
+    required: false
+  - name: motor
+    dtype: bool
+    doc: experiment involves a fine motor task
+    required: false
+  - name: olfactory
+    dtype: bool
+    doc: experiment involves olfactory stimuli
+    required: false
+  - name: speech production
+    dtype: bool
+    doc: experiment involves speaking
+    required: false
+  - name: speech perception
+    dtype: bool
+    doc: 'experiment involves '
+    required: false
+- neurodata_type_def: Tasks
+  neurodata_type_inc: LabMetaData
+  doc: holds task objects
+  attributes:
+  - name: help
+    dtype: text
+    value: stores Task objects
+    doc: help
+  groups:
+  - neurodata_type_inc: Tasks
+    doc: task information
+    quantity: '*'

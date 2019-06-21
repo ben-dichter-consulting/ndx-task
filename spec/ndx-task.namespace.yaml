@@ -6,6 +6,7 @@ namespaces:
   schema:
   - namespace: core
     neurodata_types:
-    - ElectricalSeries
+    - NWBDataInterface
+    - LabMetaData
   - source: ndx-task.extensions.yaml
   version: 0.1.0
