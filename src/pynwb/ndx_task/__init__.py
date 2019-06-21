@@ -1,1 +1,1 @@
-from ndx_task import *
+from .ndx_task import *
