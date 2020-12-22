@@ -5,7 +5,7 @@
 
 ### Installation
 ```bash
-pip install git+https://github.com/ben-dichter-consulting/ndx-task.git
+pip install git+https://github.com/catalystneuro/ndx-task.git
 ```
 
 ### Usage
