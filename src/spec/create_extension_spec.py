@@ -1,27 +1,21 @@
-from pynwb.spec import (
-    NWBNamespaceBuilder,
-    NWBGroupSpec,
-    NWBAttributeSpec,
-    NWBDatasetSpec,
-    NWBLinkSpec
-)
-from export_spec import export_spec
+# -*- coding: utf-8 -*-
+
+import os.path
+
+from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec
 
 
 def main():
     # the values for ns_builder are auto-generated from your cookiecutter inputs
-    ns_builder = NWBNamespaceBuilder(doc='An NWB:N extension',
+    ns_builder = NWBNamespaceBuilder(doc='An NWB extension for tasks',
                                      name='ndx-task',
-                                     version='0.1.0',
+                                     version='0.2.0',
                                      author='Ben Dichter',
-                                     contact='ben.dichter@gmail.com')
-
-    # see https://pynwb.readthedocs.io/en/latest/extensions.html#extending-nwb for more information
+                                     contact='ben.dichter@catalystneuro.com')
 
     task = NWBGroupSpec(neurodata_type_def='Task', neurodata_type_inc='NWBDataInterface', doc='task information')
     task.add_attribute(name='description', doc='describe the task', dtype='text', required=True)
     task.add_attribute(name='category', doc='free category field', dtype='text', required=False)
-    task.add_attribute(name='help', doc='help', dtype='text', value='stores data about a specific task')
 
     task.add_attribute(name='auditory', doc='experiment involves auditory stimuli', dtype='bool', required=False)
     task.add_attribute(name='visual', doc='experiment involves visual stimuli', dtype='bool', required=False)
@@ -35,14 +29,14 @@ def main():
 
     tasks = NWBGroupSpec(neurodata_type_def='Tasks', neurodata_type_inc='LabMetaData', doc='holds task objects')
     tasks.add_group(neurodata_type_inc='Tasks', quantity='*', doc='task information')
-    tasks.add_attribute(name='help', doc='help', dtype='text', value='stores Task objects')
 
     new_data_types = [task, tasks]
 
     ns_builder.include_type('NWBDataInterface', namespace='core')
     ns_builder.include_type('LabMetaData', namespace='core')
 
-    export_spec(ns_builder, new_data_types)
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
+    export_spec(ns_builder, new_data_types, output_dir)
 
 
 if __name__ == "__main__":
