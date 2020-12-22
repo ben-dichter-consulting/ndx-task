@@ -1,41 +1,30 @@
-import os
-from pynwb import load_namespaces, get_class
 from os import path
 
-from pynwb.file import MultiContainerInterface
-from pynwb import register_class
-from pynwb.file import LabMetaData
+from pynwb import load_namespaces, get_class
+
 
 name = 'ndx-task'
 
-here = path.abspath(path.dirname(__file__))
-ns_path = os.path.join(here, 'spec', name + '.namespace.yaml')
+# Set path of the namespace.yaml file to the expected install location
+ndx_task_scheme_specpath = path.join(
+    path.dirname(__file__),
+    'spec',
+    name + '.namespace.yaml'
+)
 
-load_namespaces(ns_path)
+# If the extension has not been installed yet but we are running directly from
+# the git repo
+if not path.exists(ndx_task_scheme_specpath):
+    ndx_task_scheme_specpath = path.abspath(path.join(
+        path.dirname(__file__),
+        '..', '..', '..',
+        'spec',
+        name + '.namespace.yaml'
+    ))
 
+
+load_namespaces(ndx_task_scheme_specpath)
 
 Task = get_class('Task', name)
-
-
-@register_class('Tasks', name)
-class Tasks(MultiContainerInterface, LabMetaData):
-    """
-    Purpose:
-        Topological graph representing connected components of a behavioral Environment.
-
-    Arguments:
-        name (str): name of this Environment
-        tasks (list): list of Environment objects
-
-    """
-
-    __nwbfields__ = ('name', 'tasks')
-
-    __clsconf__ = [{
-        'attr': 'tasks',
-        'type': Task,
-        'add': 'add_task',
-        'get': 'get_task'
-        }, ]
-    __help = 'container for tasks'
+Tasks = get_class('Tasks', name)
 

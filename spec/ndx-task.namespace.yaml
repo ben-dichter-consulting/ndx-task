@@ -1,7 +1,7 @@
 namespaces:
 - author: Ben Dichter
-  contact: ben.dichter@gmail.com
-  doc: An NWB:N extension
+  contact: ben.dichter@catalystneuro.com
+  doc: An NWB extension for tasks
   name: ndx-task
   schema:
   - namespace: core
@@ -9,4 +9,4 @@ namespaces:
     - NWBDataInterface
     - LabMetaData
   - source: ndx-task.extensions.yaml
-  version: 0.1.0
+  version: 0.2.0
